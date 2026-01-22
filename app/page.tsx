@@ -1,65 +1,184 @@
 import Image from "next/image";
+import { useState } from 'react';
 
 export default function Home() {
+  //variable to set skills view - depending on which skill is selected in about me paragraph, different skills display.
+  //In v2, skills will drop on and off the screen in a cool animation
+  const [view, setView] = useState("generic");
+  const skills = [
+    { 
+      id: 1, 
+      name: 'HTML', 
+      categories: ["generic", "ui/ux", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 2, 
+      name: 'JavaScript', 
+      categories: ["generic", "OOP", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 3, 
+      name: 'CSS', 
+      categories: ["generic", "ui/ux", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 4, 
+      name: 'React', 
+      categories: ["generic", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 5, 
+      name: 'Next.js', 
+      categories: ["generic", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 6, 
+      name: 'git', 
+      categories: ["generic", "webdev", ],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 7, 
+      name: 'node.js', 
+      categories: ["generic", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 8, 
+      name: 'Python', 
+      categories: ["generic", "OOP", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 9, 
+      name: 'MySQL', 
+      categories: ["generic", "db"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 10, 
+      name: 'PostgreSQL', 
+      categories: ["generic", "db"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 10, 
+      name: 'Figma', 
+      categories: ["ui/ux"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 11, 
+      name: 'Bootstrap Studio', 
+      categories: ["ui/ux", "webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 12, 
+      name: 'Rest APIs', 
+      categories: ["webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 13, 
+      name: 'Machine Learning', 
+      categories: ["ai"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 14, 
+      name: 'Prompt Engineering', 
+      categories: ["ai"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 15, 
+      name: 'OpenAI API', 
+      categories: ["ai"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 16, 
+      name: 'YOLO Classification', 
+      categories: ["ai"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 17, 
+      name: 'Svelte', 
+      categories: ["webdev"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 18, 
+      name: 'Clickup', 
+      categories: ["team"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 19, 
+      name: 'Slack', 
+      categories: ["team"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 20, 
+      name: 'Java', 
+      categories: ["OOP"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 21, 
+      name: 'C#', 
+      categories: ["OOP"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 22, 
+      name: 'IOT Programming', 
+      categories: ["iot"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 23, 
+      name: 'Arduino Framework', 
+      categories: ["iot"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 24, 
+      name: 'Teamwork', 
+      categories: ["transferrable"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 25, 
+      name: 'Customer Service', 
+      categories: ["transferrable"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 26, 
+      name: 'Customer Relationship Management (CRM)', 
+      categories: ["transferrable"],
+      logo: "https//:www.logo.com" //TODO
+    },
+    { 
+      id: 25, 
+      name: 'Time Management', 
+      categories: ["transferrable"],
+      logo: "https//:www.logo.com" //TODO
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now Blah Blah Blah
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div>
+      Home
     </div>
   );
 }

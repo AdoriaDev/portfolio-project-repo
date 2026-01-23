@@ -5,4 +5,5 @@
 /* Optional: Any custom global styles */
 body {
   @apply bg-gray-100 text-gray-900;
+  background-color: #435A4D;
 }

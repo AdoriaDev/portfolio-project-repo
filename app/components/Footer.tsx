@@ -1,15 +1,15 @@
-import "../globals.css";
+import './styles/Footer.css';
 
 export default function Footer() {
   return (
-    <footer className="footerBody py-6 mt-8">
-      <div className="container mx-auto px-4 text-center">
-        <div className="flex justify-center space-x-6 mb-4">
+    <footer className="footer-body">
+      <div className="footer-container">
+        <div className="social-links">
           <a 
             href="https://github.com/AdoriaDev" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hover:text-blue-600"
+            className="social-link"
           >
             GitHub
           </a>
@@ -17,20 +17,20 @@ export default function Footer() {
             href="https://www.linkedin.com/in/adoria-stevens-170a7111b/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hover:text-blue-600"
+            className="social-link"
           >
             LinkedIn
           </a>
-        <a 
-            href="https://www.linkedin.com/in/yourusername" 
+          <a 
+            href="mailto:your-email@example.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hover:text-blue-600"
-        >
+            className="social-link"
+          >
             Email
-        </a>
+          </a>
         </div>
-        <p className="text-sm text-gray-600">
+        <p className="copyright-text">
           © {new Date().getFullYear()} Adoria. All rights reserved.
         </p>
       </div>

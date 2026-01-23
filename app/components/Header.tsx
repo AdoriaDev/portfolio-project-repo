@@ -1,49 +1,28 @@
-// components/Header.tsx
 import Link from 'next/link'
-import Image from 'next/image'
-import "../globals.css";
+import './styles/Header.css';
 
 export default function Header() {
   return (
-    <header className="relative w-full">
-      {/* Logo on top left */}
-      <Link href="/" className="absolute top-4 left-4 z-10">
-        <span className="text-2xl font-bold bg-gray-200 p-2 rounded">AS</span>
+    <header className="header">
+      <Link href="/" className="logo">
+        <span className="logo-text">AS</span>
       </Link>
       
-      {/* Navigation bar on bottom right */}
-      <nav className="fixed bottom-0 right-0 w-full bg-blue-900 text-white py-4 z-50">
-        <div className="container mx-auto flex justify-end">
-          <ul className="flex space-x-6 mr-6">
+      <nav className="nav-container">
+        <div className="container mx-auto nav-content">
+          <ul className="nav-list">
             <li>
-              <Link 
-                href="/" 
-                className="hover:text-blue-300 transition-colors duration-300 text-sm uppercase tracking-wider"
-              >
-                Home
+              <Link href="/" className="nav-link">
+                About Me
               </Link>
             </li>
             <li>
-              <Link 
-                href="/projects" 
-                className="hover:text-blue-300 transition-colors duration-300 text-sm uppercase tracking-wider"
-              >
+              <Link href="/projects" className="nav-link">
                 Projects
               </Link>
             </li>
             <li>
-              <Link 
-                href="/skills" 
-                className="hover:text-blue-300 transition-colors duration-300 text-sm uppercase tracking-wider"
-              >
-                Skills
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/contact" 
-                className="hover:text-blue-300 transition-colors duration-300 text-sm uppercase tracking-wider"
-              >
+              <Link href="/contact" className="nav-link">
                 Contact
               </Link>
             </li>

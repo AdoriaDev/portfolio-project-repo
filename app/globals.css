@@ -2,8 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: Any custom global styles */
 body {
   @apply bg-gray-100 text-gray-900;
   background-color: #435A4D;
+}
+
+.skills-category-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.category-link {
+  padding: 0.5rem 1rem;
+  background-color: #2A3B41;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+  background-color: #B9530A;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }

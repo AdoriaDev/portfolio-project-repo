@@ -1,17 +1,25 @@
 'use client';
 import Image from "next/image";
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import SkillCard from './components/SkillCard'
 
 export default function Home() {
   //variable to set skills view - depending on which skill is selected in about me paragraph, different skills display.
   //In v2, skills will drop on and off the screen in a cool animation
-  const [view, setView] = useState("generic");
+  const searchParams = useSearchParams();
+  const categoryFilter = searchParams.get('category');
+
+   const [activeCategory, setActiveCategory] = useState<string>(
+    categoryFilter || 'generic'
+  );
+
   const skills = [
     { 
       id: 1, 
       name: 'HTML', 
       categories: ["generic", "ui/ux", "webdev"],
-      logo: "https//:www.logo.com" //TODO
+      logo: '/logos/HTML5_logo_and_wordmark.svg.png'
     },
     { 
       id: 2, 
@@ -65,12 +73,6 @@ export default function Home() {
       id: 10, 
       name: 'PostgreSQL', 
       categories: ["generic", "db"],
-      logo: "https//:www.logo.com" //TODO
-    },
-    { 
-      id: 10, 
-      name: 'Figma', 
-      categories: ["ui/ux"],
       logo: "https//:www.logo.com" //TODO
     },
     { 
@@ -170,17 +172,53 @@ export default function Home() {
       logo: "https//:www.logo.com" //TODO
     },
     { 
-      id: 25, 
+      id: 27, 
       name: 'Time Management', 
       categories: ["transferrable"],
       logo: "https//:www.logo.com" //TODO
     },
+    { id: 28, 
+      name: 'Figma', 
+      categories: ["ui/ux"], 
+      logo: "https//:www.logo.com" 
+    },
+
   ];
 
+  const categories = Array.from(new Set(
+    skills.flatMap(skill => skill.categories)
+  ));
+
+  const filteredSkills = skills.filter(skill => 
+    skill.categories.includes(activeCategory)
+  );
+
   return (
-    <div>
-      Home
-      {/* For each item in filtered skills array, display item with border, image, and title */}
-    </div>
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">
+        {categoryFilter 
+          ? `${categoryFilter} Skills` 
+          : 'My Skills'
+        }
+      </h1>
+
+      <div className="skills-category-links mb-6">
+        {categories.map((category) => (
+          <a 
+            key={category} 
+            href={`/?category=${category}`} 
+            className="category-link"
+          >
+            {category}
+          </a>
+        ))}
+      </div>
+
+      <div className="skills-grid">
+        {filteredSkills.map((skill) => (
+          <SkillCard key={skill.id} skill={skill} />
+        ))}
+      </div>
+    </main>
   );
 }

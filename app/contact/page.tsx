@@ -1,42 +1,56 @@
 'use client';
-import { useState } from 'react';
+
+import { FC } from 'react';
+import { useForm } from 'react-hook-form';
+import { sendEmail } from '../utils/send-emails';
 import "./Contact.css";
 
-export default function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+export type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const Contact: FC = () => {
+  const { register, handleSubmit } = useForm<FormData>();
+
+  function onSubmit(data: FormData) {
+    sendEmail(data);
+  }
 
   return (
     <div className="contact-container">
-      <div className="contact-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
         <div className="name-section">
-          <input 
-            type="text"
-            placeholder="Name"
-            className="name-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+          <label htmlFor='name'>Name:</label>
+          <input
+            type='text'
+            placeholder='Name'
+            {...register('name', { required: true })}
           />
         </div>
         <div className="email-section">
-          <input 
-            type="email"
-            placeholder="Email"
-            className="email-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='email'
+            placeholder='Email'
+            {...register('email', { required: true })}
           />
         </div>
         <div className="message-section">
-          <textarea 
-            placeholder="Message"
-            className="message-input"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
+          <label htmlFor='message'>Message:</label>
+          <textarea
+            rows={4}
+            placeholder='Message'
+            {...register('message', { required: true })}
+          ></textarea>
         </div>
-      </div>
+        <div className="submit-section">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   );
-}
+};
+
+export default Contact;

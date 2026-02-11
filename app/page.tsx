@@ -193,32 +193,56 @@ export default function Home() {
     skill.categories.includes(activeCategory)
   );
 
+   const BioParagraph = () => {
+    return (
+      <p 
+        className="bio-paragraph" 
+        onClick={handleSkillReveal} // Add this line
+      >
+        As a developer, I've always been fascinated by the power of <span className="hidden-skill" data-category="webdev">web technologies </span> 
+        that transform complex ideas into elegant solutions. My journey started with a <span className="hidden-skill" data-category="generic">general</span> curiosity about <span className="hidden-skill" data-category="OOP">object-oriented programming</span>, 
+        which led me to explore various languages and frameworks. Whether I'm crafting <span className="hidden-skill" data-category="ui/ux">intuitive user interfaces,</span> wiring up an <span className="hidden-skill" data-category="iot">IoT</span> device, 
+        figuring out the most efficient way to store <span className="hidden-skill" data-category="db">data</span>,
+        or diving into <span className="hidden-skill" data-category="ai">machine learning challenges</span>, 
+        I'm driven by the potential to create meaningful and uniquely interesting digital experiences.
+
+        <br></br><br></br>
+        I carry with me years of experience working on <span className="hidden-skill" data-category="team">teams</span>, and with wide varieties of people. 
+      </p>
+    );
+  };
+
+  const handleSkillReveal = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const category = (e.target as HTMLSpanElement).getAttribute('data-category');
+    if (category) {
+      setActiveCategory(category);
+    }
+  };
+
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">
-        {categoryFilter 
-          ? `${categoryFilter} Skills` 
-          : 'My Skills'
-        }
-      </h1>
-
-      <div className="skills-category-links mb-6">
-        {categories.map((category) => (
-          <a 
-            key={category} 
-            href={`/?category=${category}`} 
-            className="category-link"
-          >
-            {category}
-          </a>
-        ))}
+    <div className="home-container">
+      <div className="about-section">
+        <div className="header-section">
+          <div className="picture-div">
+            <img 
+              src={'logos/me.jpg'} 
+              alt={`Adoria Stevens`} 
+              className="picture"
+            />
+          </div>
+          <h1 className="greeting">Hi, I'm Adoria</h1>
+        </div>
+        
+        <BioParagraph />
       </div>
 
-      <div className="skills-grid">
-        {filteredSkills.map((skill) => (
-          <SkillCard key={skill.id} skill={skill} />
-        ))}
+      <div className="skills-section">
+        <div className="skills-grid">
+          {filteredSkills.map((skill) => (
+            <SkillCard key={skill.id} skill={skill} />
+          ))}
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -5,13 +5,21 @@ export function sendEmail(data: FormData) {
 
   fetch(apiEndpoint, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Explicitly set content type
+    },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      console.log('Response status:', res.status);
+      return res.json();
+    })
     .then((response) => {
+      console.log('Server response:', response);
       alert(response.message);
     })
     .catch((err) => {
-      alert(err);
+      console.error('Full error:', err);
+      alert('Error sending email');
     });
 }

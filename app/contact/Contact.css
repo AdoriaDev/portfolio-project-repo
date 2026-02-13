@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(90vh - 300px);
+  min-height: calc(100vh - 300px);
+  width: 100%;
 }
 
 .contact-form {
@@ -55,4 +56,10 @@ button:hover {
 
 ::placeholder {
   color: #7f8c8d;
+}
+
+.error-message {
+  color: #ff4136;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }

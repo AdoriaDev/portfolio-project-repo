@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SkillCard from './components/SkillCard'
+import { Suspense } from 'react';
 
 export default function Home() {
   //variable to set skills view - depending on which skill is selected in about me paragraph, different skills display.
@@ -16,16 +17,22 @@ export default function Home() {
 
   const skills = [
     { 
-      id: 1, 
-      name: 'HTML', 
-      categories: ["generic", "ui/ux", "webdev"],
-      logo: 'logos/html-5-svgrepo-com.svg'
-    },
-    { 
       id: 2, 
       name: 'JavaScript', 
       categories: ["generic", "OOP", "webdev"],
       logo: "logos/javascript-svgrepo-com.svg"
+    },
+    {
+      id:29,
+      name: 'TypeScript',
+      categories: ["generic", "OOP", "webdev"],
+      logo: "logos/typescript-icon-svgrepo-com.svg"
+    },
+    { 
+      id: 1, 
+      name: 'HTML', 
+      categories: ["generic", "ui/ux", "webdev"],
+      logo: 'logos/html-5-svgrepo-com.svg'
     },
     { 
       id: 3, 
@@ -182,7 +189,6 @@ export default function Home() {
       categories: ["ui/ux"], 
       logo: "logos/figma-svgrepo-com.svg" 
     },
-
   ];
 
   const categories = Array.from(new Set(
@@ -220,6 +226,7 @@ export default function Home() {
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="home-container">
       <div className="about-section">
         <div className="header-section">
@@ -244,5 +251,10 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </Suspense>
   );
+}
+
+export const metadata = {
+  metadataBase: new URL('https://adoria-stevens-portfolio.onrender.com'),
 }

@@ -73,7 +73,7 @@ const Contact: FC = () => {
               )}
             </div>
             <div className="submit-section">
-              <button type="submit">Submit</button>
+              <button className="submit-button" type="submit">Submit</button>
             </div>
           </form>
         </div>

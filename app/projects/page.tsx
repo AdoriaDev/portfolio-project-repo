@@ -3,13 +3,12 @@ import "./Projects.css";
 import ProjectCard from '../components/ProjectCard'
 
 export default function Projects() {
-
   const projects = [
     {
       id: 1,
       name: "AudioSift",
       categories: ["generic", "ui/ux", "webdev", "full-stack"],
-      description:"This is my biggest project to date, as my Capstone Project for college. This React.js and node.js web app allows you to create and manage accounts, verified by email, and 'sift' songs to get the metadata, bpm, key signature, waveform, genre, and mood. You can browse your uploads on your home page, create song groups, browse and download other people's sifts, and compare and find similar songs based on their data.",
+      description:"This is my biggest project to date, as my Capstone Project for college. This web app allows you to create and manage accounts, and 'sift' songs to get the metadata, bpm, key signature, waveform, genre, and mood. You can browse your uploads on your home page, create song groups, browse and download other people's sifts, and compare and find similar songs based on their data.",
       technologies:["ReactJS", "NodeJS", "TypeScript", "HTML", "CSS", "PostgreSQL"],
       logo: 'logos/audiosift.png',
       link: "https://audiosift-frontend.onrender.com/"
@@ -27,8 +26,8 @@ export default function Projects() {
       id: 3,
       name: "My College Project Demonstrations",
       categories: ["generic"],
-      description:"",
-      technologies:["NextJS", "ReactJS", "NodeJS", "TypeScript", "Arduino", "Python", "CSS", "HTML"],
+      description:"Here are some assignment overviews from throughout the Software Development (599) program at Mohawk. They include projects from 3rd semester to 6th, including Mobile Web Programming, IoT Programming, Mathematics of Gaming, and Emerging Web Technologies",
+      technologies:["NextJS", "ReactJS", "NodeJS", "JavaScript", "TypeScript", "Arduino", "Python", "CSS", "HTML"],
       logo: 'logos/myYoutubepng.png',
       link: "https://www.youtube.com/playlist?list=PLDsWV9xlU5x0rw7aiQ2GsnQK6-foRv5v3"
     },

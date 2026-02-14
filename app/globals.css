@@ -7,26 +7,6 @@ body {
   background-color: #435A4D;
 }
 
-.skills-category-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.category-link {
-  padding: 0.5rem 1rem;
-  background-color: #2A3B41;
-  color: white;
-  text-decoration: none;
-  border-radius: 0.25rem;
-  transition: background-color 0.3s ease;
-}
-
-.category-link:hover {
-  background-color: #B9530A;
-}
-
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -112,11 +92,85 @@ body {
   padding: 2rem;
 }
 
-@media (min-width: 700px) {
+.bio-paragraph {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #779F7F;
+  border-radius: 2rem;
+  color: #e0e0e0;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 500px) {
+  .home-container {
+    padding: 1rem;
+  }
+
+  .header-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .picture-div {
+    width: 150px;
+    height: 150px;
+  }
+
+  .greeting {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
   .skills-grid {
-    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .bio-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .bio-paragraph {
+    padding: 0.75rem;
+    border-radius: 1rem;
+    line-height: 1.5;
+  }
+
+  .greeting {
+    font-size: 1.2rem;
+  }
+
+  .bio-paragraph {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .skills-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .skills-grid {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
   }
 }
 

@@ -14,6 +14,7 @@ const inter = Inter({
 
 // Metadata for the entire application
 export const metadata: Metadata = {
+  metadataBase: new URL('https://adoria-stevens-portfolio.onrender.com'),
   title: {
     default: 'Adoria - Software Developer Portfolio',
     template: '%s | Adoria Portfolio'

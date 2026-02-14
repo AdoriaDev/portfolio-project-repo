@@ -254,7 +254,3 @@ export default function Home() {
     </Suspense>
   );
 }
-
-export const metadata = {
-  metadataBase: new URL('https://adoria-stevens-portfolio.onrender.com'),
-}

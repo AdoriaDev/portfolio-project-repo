@@ -1,4 +1,5 @@
 import '../styles/ProjectCard.css';
+import Link from 'next/link';
 import TechLogo from './TechLogo'
 
 interface ProjectProps {
@@ -14,6 +15,7 @@ interface ProjectProps {
     link: string;
     linkLabel: string;
     repo?: string;
+    caseStudy?: string;
   }
 }
 
@@ -102,6 +104,11 @@ export default function ProjectCard({ project }: ProjectProps) {
           <a href={project.link} className="project-button project-button-primary" target="_blank" rel="noopener noreferrer">
             {project.linkLabel} ↗
           </a>
+          {project.caseStudy && (
+            <Link href={project.caseStudy} className="project-button">
+              Case study
+            </Link>
+          )}
           {project.repo && (
             <a href={project.repo} className="project-button" target="_blank" rel="noopener noreferrer">
               Code ↗

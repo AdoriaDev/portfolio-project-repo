@@ -16,7 +16,8 @@ export default function Projects() {
       logo: '/logos/audiosift.png',
       imageAlt: "AudioSift landing page with the headline \"Discover Your Music's DNA\" above music-themed photos",
       link: "https://audiosift-frontend.onrender.com/",
-      linkLabel: "Live site"
+      linkLabel: "Live site",
+      caseStudy: "/projects/audiosift"
     },
     {
       id: 2,

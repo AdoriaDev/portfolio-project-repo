@@ -7,10 +7,8 @@ import '../styles/Header.css';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    console.log('Toggle clicked', isMenuOpen); // Debug log
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((open) => !open);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header">
@@ -22,6 +20,7 @@ export default function Header() {
         className="mobile-menu-toggle" 
         onClick={toggleMenu}
         aria-label="Toggle navigation menu"
+        aria-expanded={isMenuOpen}
       >
         {isMenuOpen ? '✕' : '☰'}
       </button>
@@ -30,17 +29,17 @@ export default function Header() {
         <div className="nav-content">
           <ul className="nav-list">
             <li>
-              <Link href="/" className="nav-link" onClick={toggleMenu}>
+              <Link href="/" className="nav-link" onClick={closeMenu}>
                 About Me
               </Link>
             </li>
             <li>
-              <Link href="/projects" className="nav-link" onClick={toggleMenu}>
+              <Link href="/projects" className="nav-link" onClick={closeMenu}>
                 Projects
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="nav-link" onClick={toggleMenu}>
+              <Link href="/contact" className="nav-link" onClick={closeMenu}>
                 Contact
               </Link>
             </li>

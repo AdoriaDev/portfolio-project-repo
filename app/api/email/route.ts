@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
 import { EmailSchema, sanitizeInput } from '@/app/utils/validators';
 import { rateLimiter } from '@/app/utils/rate-limiter';
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
 
 export async function POST(request: NextRequest) {
   try{
-    const requestBody = await request.json();
-    const body = JSON.parse(JSON.stringify(requestBody));
+    const body = await request.json().catch(() => ({}));
 
     const ip = 
       request.headers.get('x-forwarded-for')?.split(',')[0] || 
@@ -73,7 +71,7 @@ export async function POST(request: NextRequest) {
       console.error('Email send error:', err.message);
     }
     return NextResponse.json(
-      { error: 'An unexpected error occurred' }, 
+      { error: "Sorry, your message couldn't be sent right now. Please try again later or reach out on LinkedIn." }, 
       { status: 500 }
     );
   }

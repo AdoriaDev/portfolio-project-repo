@@ -21,13 +21,12 @@ export const metadata: Metadata = {
   },
   description: 'Portfolio showcasing software development projects and technical expertise',
   keywords: ['software developer', 'portfolio', 'next.js', 'typescript', 'zoho', 'api integration'],
-  authors: [{ name: 'Adoria', url: 'https://your-portfolio-url.com' }],
+  authors: [{ name: 'Adoria Stevens', url: 'https://adoria-stevens-portfolio.onrender.com' }],
   openGraph: {
     title: 'Adoria - Software Developer Portfolio',
     description: 'Explore my technical projects and development expertise',
     type: 'website',
-    // Add your portfolio image URL
-    images: ['/og-image.png']
+    images: ['/logos/me.jpg']
   },
   robots: {
     index: true,
@@ -51,8 +50,7 @@ export default function RootLayout({
         </main>
         
         <Footer />
-        
-        {/* Optional: Add global modals, tooltips, etc. */}
+
       </body>
     </html>
   )

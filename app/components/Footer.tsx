@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import '../styles/Footer.css';
 
 export default function Footer() {
@@ -21,14 +22,9 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <a 
-            href="mailto:your-email@example.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="social-link"
-          >
+          <Link href="/contact" className="social-link">
             Email
-          </a>
+          </Link>
         </div>
         <p className="copyright-text">
           © {new Date().getFullYear()} Adoria. All rights reserved.

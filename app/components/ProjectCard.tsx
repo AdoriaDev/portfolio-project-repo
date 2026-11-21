@@ -18,52 +18,52 @@ export default function ProjectCard({ project }: ProjectProps) {
     {
       id:1,
       name:"ReactJS",
-      logo:"logos/react-svgrepo-com.svg"
+      logo:"/logos/react-svgrepo-com.svg"
     },
     {
       id:2,
       name:"NodeJS",
-      logo:"logos/nodejs-icon-svgrepo-com.svg"
+      logo:"/logos/nodejs-icon-svgrepo-com.svg"
     },
     {
       id:10,
       name:"JavaScript",
-      logo:"logos/javascript-svgrepo-com.svg"
+      logo:"/logos/javascript-svgrepo-com.svg"
     },
     {
       id:3,
       name:"TypeScript",
-      logo:"logos/typescript-icon-svgrepo-com.svg"
+      logo:"/logos/typescript-icon-svgrepo-com.svg"
     },
     {
       id:4,
       name:"HTML",
-      logo:"logos/html-5-svgrepo-com.svg"
+      logo:"/logos/html-5-svgrepo-com.svg"
     },
     {
       id:5,
       name:"CSS",
-      logo:"logos/css-3-svgrepo-com.svg"
+      logo:"/logos/css-3-svgrepo-com.svg"
     },
     {
       id:6,
       name:"PostgreSQL",
-      logo:"logos/postgresql-svgrepo-com.svg"
+      logo:"/logos/postgresql-svgrepo-com.svg"
     },
     {
       id:7,
       name:"NextJS",
-      logo:"logos/nextjs-fill-svgrepo-com.svg"
+      logo:"/logos/nextjs-fill-svgrepo-com.svg"
     },
     {
       id:8,
       name:"Arduino",
-      logo:"logos/arduino-svgrepo-com.svg"
+      logo:"/logos/arduino-svgrepo-com.svg"
     },
     {
       id:9,
       name:"Python",
-      logo:"logos/python-svgrepo-com.svg"
+      logo:"/logos/python-svgrepo-com.svg"
     },
   ];
 

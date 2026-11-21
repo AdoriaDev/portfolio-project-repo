@@ -1,7 +1,7 @@
 .project-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 2 / 1;
   border-radius: 1rem;
   overflow: hidden;
   border: 2px solid #2A3B41;
@@ -10,7 +10,6 @@
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
-  aspect-ratio: 2 / 1;
 }
 
 .project-card:hover {
@@ -126,6 +125,50 @@
   }
 
   .project-overlay {
-    padding:0.25;
+    padding: 0.25rem;
+  }
+}
+
+/* Touch devices can't hover, so show the details below the image instead of in an overlay */
+@media (hover: none) {
+  .projects-grid .project-card {
+    aspect-ratio: auto;
+    background-color: #202226;
+  }
+
+  .projects-grid .project-card:hover {
+    transform: none;
+  }
+
+  .projects-grid .project-image {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .projects-grid .project-label {
+    display: none;
+  }
+
+  .projects-grid .project-overlay {
+    position: static;
+    opacity: 1;
+    background: none;
+    padding: 1rem;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .projects-grid .project-name {
+    font-size: 1rem;
+  }
+
+  .projects-grid .project-description {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .projects-grid .tech-logos {
+    position: static;
+    padding: 0.75rem 0 0;
   }
 }

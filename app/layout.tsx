@@ -16,14 +16,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://adoria-stevens-portfolio.onrender.com'),
   title: {
-    default: 'Adoria - Software Developer Portfolio',
-    template: '%s | Adoria Portfolio'
+    default: 'Adoria Stevens – Full-Stack Developer',
+    template: '%s | Adoria Stevens'
   },
   description: 'Portfolio showcasing software development projects and technical expertise',
-  keywords: ['software developer', 'portfolio', 'next.js', 'typescript', 'zoho', 'api integration'],
+  keywords: ['software developer', 'full-stack developer', 'portfolio', 'react', 'next.js', 'node.js', 'typescript', 'api integration'],
   authors: [{ name: 'Adoria Stevens', url: 'https://adoria-stevens-portfolio.onrender.com' }],
   openGraph: {
-    title: 'Adoria - Software Developer Portfolio',
+    title: 'Adoria Stevens – Full-Stack Developer',
     description: 'Explore my technical projects and development expertise',
     type: 'website',
     images: ['/logos/me.jpg']

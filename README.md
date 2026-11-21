@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adoria Stevens – Portfolio
 
-## Getting Started
+Personal portfolio site for Adoria Stevens, a full-stack developer working with React, Next.js, Node.js and TypeScript.
 
-First, run the development server:
+**Live site:** https://adoria-stevens-portfolio.onrender.com
+
+## Features
+
+- **Filterable skills** – the skills grid can be filtered from the About page, or tailored with URL parameters (see below).
+- **Projects** – project cards with descriptions and tech stacks, shown on hover on desktop and inline on touch devices.
+- **Contact form** – validated on the client and server with Zod, sanitized with `sanitize-html`, rate limited per IP, and delivered with Nodemailer.
+- **Résumé download** – a PDF served from `public/`.
+- Responsive layout for desktop and mobile.
+
+## Tailoring the skills section with URL parameters
+
+The home page reads two optional query parameters, so a link sent with an application can lead with the most relevant skills:
+
+| Parameter | Example | Shows |
+| --- | --- | --- |
+| `skills` | `/?skills=React,TypeScript,PostgreSQL` | Exactly these skills, in this order |
+| `category` | `/?category=webdev,db` | Every skill in any of these categories |
+
+Categories: `generic` (default), `webdev`, `OOP`, `ui/ux`, `db`, `ai`, `iot`, `team`, `transferrable`. Matching is case-insensitive, and unknown values fall back to the general skill set. If both parameters are given, `skills` wins.
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) (App Router) and React
+- TypeScript
+- Tailwind CSS and plain CSS modules per component
+- Zod and React Hook Form for validation
+- Nodemailer for email
+
+## Running locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The contact form needs two environment variables, for example in `.env.local`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+MY_EMAIL=your-gmail-address@gmail.com
+MY_PASSWORD=your-gmail-app-password
+```
 
-## Learn More
+`MY_PASSWORD` should be a Gmail [app password](https://support.google.com/accounts/answer/185833), not your account password.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed on [Render](https://render.com) using `render.yaml` (`npm install && npm run build`, then `npm run start`).

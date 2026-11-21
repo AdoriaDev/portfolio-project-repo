@@ -10,6 +10,7 @@ interface ProjectProps {
     technologies: string[];
     logo: string;
     link: string;
+    repo?: string;
   }
 }
 
@@ -72,27 +73,40 @@ export default function ProjectCard({ project }: ProjectProps) {
   );
 
   return (
-    <a href={project.link} className="project-card" target="_blank" rel="noopener noreferrer">
-      <img
-        src={project.logo}
-        alt={`${project.name} screenshot`}
-        className="project-image"
-      />
-      <div className="project-label">
-        <span className="project-name">{project.name}</span>
-      </div>
-      <div className="project-overlay">
-        <span className="project-name">{project.name}</span>
-        <p className="project-description">{project.description}</p>
-        <div className="tech-logos">
-        {projectTechLogos.map((tech) => (
-          <TechLogo 
-            key={tech.id} 
-            tech={tech} 
-          />
-        ))}
-      </div>
-      </div>
-    </a>
+    <div className="project-card">
+      <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
+        <img
+          src={project.logo}
+          alt={`${project.name} screenshot`}
+          className="project-image"
+        />
+        <div className="project-label">
+          <span className="project-name">{project.name}</span>
+        </div>
+        <div className="project-overlay">
+          <span className="project-name">{project.name}</span>
+          <p className="project-description">{project.description}</p>
+          <div className="tech-logos">
+          {projectTechLogos.map((tech) => (
+            <TechLogo 
+              key={tech.id} 
+              tech={tech} 
+            />
+          ))}
+        </div>
+        </div>
+      </a>
+      {project.repo && (
+        <a
+          href={project.repo}
+          className="project-code-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View ${project.name} source code on GitHub`}
+        >
+          Code ↗
+        </a>
+      )}
+    </div>
   )
 }

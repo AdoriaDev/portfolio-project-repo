@@ -20,7 +20,8 @@ export default function Projects() {
       description:"This was a fun project from the Emerging Web Technologies course in Semester 6 at Mohawk - while the base app is done to the assignment's standards, I plan on expanding and improving the project and hosting it for use in real D&D Campaigns",
       technologies:["NextJS", "HTML", "CSS" ],
       logo: '/logos/coming-soon.jpg',
-      link: "https://youtu.be/5I4SUnfZGGQ"
+      link: "https://youtu.be/5I4SUnfZGGQ",
+      repo: "https://github.com/AdoriaDev/dnd-char-manager"
     },
     {
       id: 3,

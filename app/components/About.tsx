@@ -1,17 +1,29 @@
 'use client';
 import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import SkillCard from './SkillCard'
 
-export default function About() {
-  //variable to set skills view - depending on which skill is selected in about me paragraph, different skills display.
-  //In v2, skills will drop on and off the screen in a cool animation
-  const searchParams = useSearchParams();
-  const categoryFilter = searchParams.get('category');
+interface AboutProps {
+  /** Categories from the URL, e.g. ?category=webdev,db */
+  initialCategories?: string[];
+  /** Specific skill names from the URL, e.g. ?skills=React,TypeScript,PostgreSQL */
+  initialSkills?: string[];
+}
 
-   const [activeCategory, setActiveCategory] = useState<string>(
-    categoryFilter || 'generic'
-  );
+type SkillFilter =
+  | { kind: 'categories'; values: string[] }
+  | { kind: 'skills'; values: string[] };
+
+const normalize = (value: string) => value.trim().toLowerCase();
+
+export default function About({ initialCategories = [], initialSkills = [] }: AboutProps) {
+  // Skills shown depend on which hidden word in the bio was clicked, or on the
+  // ?category= / ?skills= URL params used to tailor the page for an application.
+  const [filter, setFilter] = useState<SkillFilter>(() => {
+    if (initialSkills.length > 0) return { kind: 'skills', values: initialSkills.map(normalize) };
+    if (initialCategories.length > 0) return { kind: 'categories', values: initialCategories.map(normalize) };
+    return { kind: 'categories', values: ['generic'] };
+  });
 
   const skills = [
     { 
@@ -161,25 +173,25 @@ export default function About() {
     { 
       id: 24, 
       name: 'Teamwork', 
-      categories: ["transferrable"],
+      categories: ["generic", "transferrable"],
       logo: "/logos/teamwork-svgrepo-com.svg"
     },
     { 
       id: 25, 
       name: 'Customer Service', 
-      categories: ["transferrable"],
+      categories: ["generic", "transferrable"],
       logo: "/logos/customer-service-support-svgrepo-com.svg"
     },
     { 
       id: 26, 
       name: 'Customer Relationship Management', 
-      categories: ["transferrable"],
+      categories: ["generic", "transferrable"],
       logo: "/logos/zoho-svgrepo-com.svg"
     },
     { 
       id: 27, 
       name: 'Time Management', 
-      categories: ["transferrable"],
+      categories: ["generic", "transferrable"],
       logo: "/logos/time-svgrepo-com.svg"
     },
     { id: 28, 
@@ -189,14 +201,27 @@ export default function About() {
     },
   ];
 
-  const filteredSkills = skills.filter(skill => 
-    skill.categories.includes(activeCategory)
-  );
+  const matchesFilter = (skill: (typeof skills)[number], f: SkillFilter) =>
+    f.kind === 'skills'
+      ? f.values.includes(normalize(skill.name))
+      : skill.categories.some((category) => f.values.includes(normalize(category)));
+
+  let filteredSkills = skills.filter((skill) => matchesFilter(skill, filter));
+  if (filter.kind === 'skills') {
+    // Keep the order given in the URL so the most relevant skills come first
+    filteredSkills.sort(
+      (a, b) => filter.values.indexOf(normalize(a.name)) - filter.values.indexOf(normalize(b.name))
+    );
+  }
+  if (filteredSkills.length === 0) {
+    // Unknown param values: fall back to the general skill set
+    filteredSkills = skills.filter((skill) => skill.categories.includes('generic'));
+  }
 
   const handleSkillReveal = (e: React.SyntheticEvent<HTMLParagraphElement>) => {
     const category = (e.target as HTMLElement).getAttribute('data-category');
     if (category) {
-      setActiveCategory(category);
+      setFilter({ kind: 'categories', values: [normalize(category)] });
     }
   };
 
@@ -218,7 +243,22 @@ export default function About() {
               className="picture"
             />
           </div>
-          <h1 className="greeting">Hi, I&apos;m Adoria</h1>
+          <div className="intro">
+            <h1 className="greeting">Hi, I&apos;m Adoria</h1>
+            <p className="tagline">Full-stack developer · React, Node.js, TypeScript</p>
+            <p className="looking-for">Open to junior full-stack developer roles, remote or in Ontario.</p>
+            <div className="cta-row">
+              <Link href="/projects" className="cta-button cta-primary">View Projects</Link>
+              <a
+                href="/Adoria-Stevens-Resume.pdf"
+                className="cta-button cta-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Résumé (PDF)
+              </a>
+            </div>
+          </div>
         </div>
         
         <p 
@@ -226,7 +266,7 @@ export default function About() {
           onClick={handleSkillReveal}
           onKeyDown={handleSkillKeyDown}
         >
-          As a developer, I&apos;ve always been fascinated by the power of <span className="hidden-skill" role="button" tabIndex={0} data-category="webdev">web technologies</span> 
+          As a developer, I&apos;ve always been fascinated by the power of <span className="hidden-skill" role="button" tabIndex={0} data-category="webdev">web technologies</span>{' '}
           that transform complex ideas into elegant solutions. My journey started with a <span className="hidden-skill" role="button" tabIndex={0} data-category="generic">general</span> curiosity about <span className="hidden-skill" role="button" tabIndex={0} data-category="OOP">object-oriented programming</span>, 
           which led me to explore various languages and frameworks. Whether I&apos;m crafting <span className="hidden-skill" role="button" tabIndex={0} data-category="ui/ux">intuitive user interfaces</span>, wiring up an <span className="hidden-skill" role="button" tabIndex={0} data-category="iot">IoT</span> device, 
           figuring out the most efficient way to store <span className="hidden-skill" role="button" tabIndex={0} data-category="db">data</span>,

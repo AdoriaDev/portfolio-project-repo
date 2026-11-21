@@ -27,7 +27,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="copyright-text">
-          © {new Date().getFullYear()} Adoria. All rights reserved.
+          © {new Date().getFullYear()} Adoria Stevens. All rights reserved.
         </p>
       </div>
     </footer>

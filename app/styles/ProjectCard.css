@@ -12,6 +12,42 @@
   box-sizing: border-box;
 }
 
+.project-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.project-link:focus-visible {
+  outline: 3px solid #F4A261;
+  outline-offset: -3px;
+}
+
+.project-link:focus-visible .project-overlay {
+  opacity: 1;
+}
+
+.project-code-link {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background-color: rgba(32, 34, 38, 0.85);
+  border: 1px solid #F4A261;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.project-code-link:hover {
+  background-color: #B9530A;
+}
+
 .project-card:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -131,6 +167,10 @@
 
 /* Touch devices can't hover, so show the details below the image instead of in an overlay */
 @media (hover: none) {
+  .projects-grid {
+    grid-auto-rows: auto;
+  }
+
   .projects-grid .project-card {
     aspect-ratio: auto;
     background-color: #202226;
@@ -138,6 +178,10 @@
 
   .projects-grid .project-card:hover {
     transform: none;
+  }
+
+  .projects-grid .project-link {
+    height: auto;
   }
 
   .projects-grid .project-image {
@@ -151,6 +195,7 @@
 
   .projects-grid .project-overlay {
     position: static;
+    height: auto;
     opacity: 1;
     background: none;
     padding: 1rem;

@@ -1,51 +1,56 @@
 'use client';
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import '../styles/Header.css';
 
+const NAV_ITEMS = [
+  { href: '/', label: 'About Me' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header">
-      <Link href="/" className="logo">
-        <span className="logo-text">AS</span>
-      </Link>
-      
-      <button 
-        className="mobile-menu-toggle" 
-        onClick={toggleMenu}
-        aria-label="Toggle navigation menu"
-        aria-expanded={isMenuOpen}
-      >
-        {isMenuOpen ? '✕' : '☰'}
-      </button>
+      <div className="header-inner">
+        <Link href="/" className="logo" aria-label="Adoria Stevens, home" onClick={closeMenu}>
+          <span className="logo-text">AS</span>
+        </Link>
 
-      <nav className={`nav-container ${isMenuOpen ? 'menu-open' : ''}`}>
-        <div className="nav-content">
+        <button
+          className="mobile-menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? '✕' : '☰'}
+        </button>
+
+        <nav className={`nav-container ${isMenuOpen ? 'menu-open' : ''}`}>
           <ul className="nav-list">
-            <li>
-              <Link href="/" className="nav-link" onClick={closeMenu}>
-                About Me
-              </Link>
-            </li>
-            <li>
-              <Link href="/projects" className="nav-link" onClick={closeMenu}>
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="nav-link" onClick={closeMenu}>
-                Contact
-              </Link>
-            </li>
+            {NAV_ITEMS.map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`nav-link ${pathname === href ? 'active' : ''}`}
+                  aria-current={pathname === href ? 'page' : undefined}
+                  onClick={closeMenu}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   )
 }

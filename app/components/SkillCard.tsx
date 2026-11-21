@@ -11,15 +11,11 @@ interface SkillProps {
 
 export default function SkillCard({ skill }: SkillProps) {
   return (
-    <div className="skill-card">
-      <div className="skill-logo-container">
-        <img 
-          src={skill.logo} 
-          alt={`${skill.name} logo`} 
-          className="skill-logo"
-        />
-      </div>
+    <li className="skill-chip">
+      <span className="skill-icon">
+        <img src={skill.logo} alt="" className="skill-logo" />
+      </span>
       <span className="skill-name">{skill.name}</span>
-    </div>
+    </li>
   )
 }

@@ -1,219 +1,146 @@
 .project-card {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 1;
+  display: flex;
+  flex-direction: column;
   border-radius: 1rem;
   overflow: hidden;
   border: 2px solid #2A3B41;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
+  background-color: #202226;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box;
-}
-
-.project-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-}
-
-.project-link:focus-visible {
-  outline: 3px solid #F4A261;
-  outline-offset: -3px;
-}
-
-.project-link:focus-visible .project-overlay {
-  opacity: 1;
-}
-
-.project-code-link {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 2;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  background-color: rgba(32, 34, 38, 0.85);
-  border: 1px solid #F4A261;
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.project-code-link:hover {
-  background-color: #B9530A;
 }
 
 .project-card:hover {
-  transform: scale(1.03);
+  transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.project-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.project-media:focus-visible {
+  outline: 3px solid #F4A261;
+  outline-offset: -3px;
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   display: block;
 }
 
-/* Default name label at bottom */
-.project-label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.75rem 1rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  display: flex;
-  align-items: center;
-  transition: opacity 0.3s ease;
-}
-
-/* Hover overlay with description */
+/* Full description on hover (desktop) */
 .project-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  text-align: center;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(17, 24, 39, 0.92);
   transition: opacity 0.3s ease;
 }
 
-.project-card:hover .project-overlay {
+.project-media:hover .project-overlay,
+.project-media:focus-visible .project-overlay {
   opacity: 1;
 }
 
-.project-card:hover .project-label {
-  opacity: 0;
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .project-name {
   color: white;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.project-summary {
+  color: #e5e7eb;
   font-size: 0.95rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  text-decoration: underline;
+  line-height: 1.45;
 }
 
 .project-description {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
   line-height: 1.5;
-  margin-top: 0.75rem;
+}
+
+/* Only shown where hover isn't available */
+.project-description-inline {
+  display: none;
 }
 
 .tech-logos {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
 }
 
-@media (max-width: 768px) {
-  .project-card {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .project-description {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin-top: 0.75rem;
-  }
-
-  .project-name {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    text-decoration: underline;
-  }
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
-@media (max-width: 500px) {
-  .project-description {
-    font-size: 0.55rem;
-    margin-top: 0rem;
-  }
+.project-button {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #F4A261;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
 
-  .project-name {
-    font-size: 0.6rem;
+.project-button:hover {
+  background-color: rgba(244, 162, 97, 0.15);
+}
+
+.project-button-primary {
+  background-color: #B9530A;
+  border-color: #B9530A;
+}
+
+.project-button-primary:hover {
+  background-color: #8c4108;
+}
+
+/* Touch devices can't hover: show the full description in the card body instead */
+@media (hover: none) {
+  .project-card:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   .project-overlay {
-    padding: 0.25rem;
-  }
-}
-
-/* Touch devices can't hover, so show the details below the image instead of in an overlay */
-@media (hover: none) {
-  .projects-grid {
-    grid-auto-rows: auto;
-  }
-
-  .projects-grid .project-card {
-    aspect-ratio: auto;
-    background-color: #202226;
-  }
-
-  .projects-grid .project-card:hover {
-    transform: none;
-  }
-
-  .projects-grid .project-link {
-    height: auto;
-  }
-
-  .projects-grid .project-image {
-    aspect-ratio: 16 / 9;
-    height: auto;
-  }
-
-  .projects-grid .project-label {
     display: none;
   }
 
-  .projects-grid .project-overlay {
-    position: static;
-    height: auto;
-    opacity: 1;
-    background: none;
-    padding: 1rem;
-    text-align: left;
-    align-items: flex-start;
+  .project-summary {
+    display: none;
   }
 
-  .projects-grid .project-name {
-    font-size: 1rem;
-  }
-
-  .projects-grid .project-description {
+  .project-description-inline {
+    display: block;
     font-size: 0.9rem;
-    margin-top: 0.5rem;
-  }
-
-  .projects-grid .tech-logos {
-    position: static;
-    padding: 0.75rem 0 0;
   }
 }

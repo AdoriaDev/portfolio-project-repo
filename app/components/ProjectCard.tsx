@@ -6,10 +6,13 @@ interface ProjectProps {
     id: number;
     name: string;
     categories: string[];
+    summary: string;
     description: string;
     technologies: string[];
     logo: string;
+    imageAlt: string;
     link: string;
+    linkLabel: string;
     repo?: string;
   }
 }
@@ -73,40 +76,39 @@ export default function ProjectCard({ project }: ProjectProps) {
   );
 
   return (
-    <div className="project-card">
-      <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
-        <img
-          src={project.logo}
-          alt={`${project.name} screenshot`}
-          className="project-image"
-        />
-        <div className="project-label">
-          <span className="project-name">{project.name}</span>
-        </div>
-        <div className="project-overlay">
-          <span className="project-name">{project.name}</span>
+    <article className="project-card">
+      <a
+        href={project.link}
+        className="project-media"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${project.name}: ${project.linkLabel}`}
+      >
+        <img src={project.logo} alt={project.imageAlt} className="project-image" />
+        <div className="project-overlay" aria-hidden="true">
           <p className="project-description">{project.description}</p>
-          <div className="tech-logos">
-          {projectTechLogos.map((tech) => (
-            <TechLogo 
-              key={tech.id} 
-              tech={tech} 
-            />
-          ))}
-        </div>
         </div>
       </a>
-      {project.repo && (
-        <a
-          href={project.repo}
-          className="project-code-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`View ${project.name} source code on GitHub`}
-        >
-          Code ↗
-        </a>
-      )}
-    </div>
+      <div className="project-body">
+        <h2 className="project-name">{project.name}</h2>
+        <p className="project-summary">{project.summary}</p>
+        <p className="project-description project-description-inline">{project.description}</p>
+        <ul className="tech-logos" aria-label="Technologies used">
+          {projectTechLogos.map((tech) => (
+            <TechLogo key={tech.id} tech={tech} />
+          ))}
+        </ul>
+        <div className="project-actions">
+          <a href={project.link} className="project-button project-button-primary" target="_blank" rel="noopener noreferrer">
+            {project.linkLabel} ↗
+          </a>
+          {project.repo && (
+            <a href={project.repo} className="project-button" target="_blank" rel="noopener noreferrer">
+              Code ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
   )
 }

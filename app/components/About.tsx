@@ -64,13 +64,13 @@ export default function About({ initialCategories = [], initialSkills = [] }: Ab
     },
     { 
       id: 6, 
-      name: 'git', 
+      name: 'Git', 
       categories: ["generic", "webdev", ],
       logo: "/logos/git-svgrepo-com.svg"
     },
     { 
       id: 7, 
-      name: 'node.js', 
+      name: 'Node.js', 
       categories: ["generic", "webdev"],
       logo: "/logos/nodejs-icon-svgrepo-com.svg"
     },
@@ -131,7 +131,7 @@ export default function About({ initialCategories = [], initialSkills = [] }: Ab
     { 
       id: 17, 
       name: 'Svelte', 
-      categories: ["webdev"],
+      categories: ["generic", "webdev"],
       logo: "/logos/svelte-icon-svgrepo-com.svg"
     },
     { 
@@ -199,6 +199,24 @@ export default function About({ initialCategories = [], initialSkills = [] }: Ab
       categories: ["ui/ux"], 
       logo: "/logos/figma-svgrepo-com.svg" 
     },
+    {
+      id: 30,
+      name: 'Jest',
+      categories: ["generic", "webdev"],
+      logo: "/logos/jest.svg"
+    },
+    {
+      id: 31,
+      name: 'AWS',
+      categories: ["generic", "webdev"],
+      logo: "/logos/amazonwebservices.svg"
+    },
+    {
+      id: 32,
+      name: 'Claude Code',
+      categories: ["generic", "ai"],
+      logo: "/logos/claude.svg"
+    },
   ];
 
   const matchesFilter = (skill: (typeof skills)[number], f: SkillFilter) =>
@@ -218,14 +236,14 @@ export default function About({ initialCategories = [], initialSkills = [] }: Ab
     filteredSkills = skills.filter((skill) => skill.categories.includes('generic'));
   }
 
-  const handleSkillReveal = (e: React.SyntheticEvent<HTMLParagraphElement>) => {
+  const handleSkillReveal = (e: React.SyntheticEvent<HTMLDivElement>) => {
     const category = (e.target as HTMLElement).getAttribute('data-category');
     if (category) {
       setFilter({ kind: 'categories', values: [normalize(category)] });
     }
   };
 
-  const handleSkillKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
+  const handleSkillKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleSkillReveal(e);
@@ -261,29 +279,46 @@ export default function About({ initialCategories = [], initialSkills = [] }: Ab
           </div>
         </div>
         
-        <p 
-          className="bio-paragraph" 
+        <div
+          className="bio-paragraph"
           onClick={handleSkillReveal}
           onKeyDown={handleSkillKeyDown}
         >
-          As a developer, I&apos;ve always been fascinated by the power of <span className="hidden-skill" role="button" tabIndex={0} data-category="webdev">web technologies</span>{' '}
-          that transform complex ideas into elegant solutions. My journey started with a <span className="hidden-skill" role="button" tabIndex={0} data-category="generic">general</span> curiosity about <span className="hidden-skill" role="button" tabIndex={0} data-category="OOP">object-oriented programming</span>, 
-          which led me to explore various languages and frameworks. Whether I&apos;m crafting <span className="hidden-skill" role="button" tabIndex={0} data-category="ui/ux">intuitive user interfaces</span>, wiring up an <span className="hidden-skill" role="button" tabIndex={0} data-category="iot">IoT</span> device, 
-          figuring out the most efficient way to store <span className="hidden-skill" role="button" tabIndex={0} data-category="db">data</span>,
-          or diving into <span className="hidden-skill" role="button" tabIndex={0} data-category="ai">machine learning challenges</span>, 
-          I&apos;m driven by the potential to create meaningful and uniquely interesting digital experiences.
-
-          <br /><br />
-          I carry with me years of experience working on <span className="hidden-skill" role="button" tabIndex={0} data-category="team">teams</span>, and with wide varieties of people. 
-        </p>
+          <p>
+            I&apos;m a full-stack developer with 18 months of professional experience on two remote
+            development teams. At Hero Technical Solutions, I build custom{' '}
+            <span className="hidden-skill" role="button" tabIndex={0} data-category="webdev">web technologies</span> for clients:
+            JavaScript widgets and REST API integrations inside Zoho CRM, plus workflow automation.
+            I also manage the Support Desk, triaging client tickets and making sure every client
+            hears back on time.
+          </p>
+          <p>
+            My capstone project, AudioSift, analyzes uploaded songs for BPM, key, genre and mood,
+            with a PostgreSQL <span className="hidden-skill" role="button" tabIndex={0} data-category="db">data</span> layer and a Redis job queue
+            doing the heavy lifting.
+          </p>
+          <p>
+            My journey started with a <span className="hidden-skill" role="button" tabIndex={0} data-category="generic">general</span> curiosity
+            about <span className="hidden-skill" role="button" tabIndex={0} data-category="OOP">object-oriented programming</span>. Whether I&apos;m
+            crafting <span className="hidden-skill" role="button" tabIndex={0} data-category="ui/ux">intuitive user interfaces</span>, wiring up
+            an <span className="hidden-skill" role="button" tabIndex={0} data-category="iot">IoT</span> device or diving
+            into <span className="hidden-skill" role="button" tabIndex={0} data-category="ai">machine learning challenges</span>, I&apos;m driven by
+            the potential to create meaningful and uniquely interesting digital experiences.
+          </p>
+          <p>
+            I bring years of experience working on <span className="hidden-skill" role="button" tabIndex={0} data-category="team">teams</span> and
+            with a wide variety of people, along with
+            the <span className="hidden-skill" role="button" tabIndex={0} data-category="transferrable">people skills</span> that come with it.
+          </p>
+        </div>
       </div>
 
       <div className="skills-section">
-        <div className="skills-grid">
+        <ul className="skills-grid" aria-label="Skills">
           {filteredSkills.map((skill) => (
             <SkillCard key={skill.id} skill={skill} />
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

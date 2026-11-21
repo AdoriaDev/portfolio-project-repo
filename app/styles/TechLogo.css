@@ -1,15 +1,12 @@
-.tech-logo-div{
-    max-height: 50px;
-    max-width: 50px;
-}
-
-.tech-logo-container{
-    height: 100%;
-    width: 100%;
-}
-
-.tech-logo-container{
-    aspect-ratio: 1 / 1;
+.tech-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  border-radius: 0.4rem;
+  background-color: #f9fafb;
 }
 
 .tech-logo {

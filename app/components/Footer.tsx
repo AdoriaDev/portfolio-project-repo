@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import '../styles/Footer.css';
 
 export default function Footer() {
@@ -22,9 +21,9 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <Link href="/contact" className="social-link">
+          <a href="mailto:adoria247@gmail.com" className="social-link">
             Email
-          </Link>
+          </a>
         </div>
         <p className="copyright-text">
           © {new Date().getFullYear()} Adoria Stevens. All rights reserved.
